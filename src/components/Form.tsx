@@ -37,8 +37,11 @@ const createUserFormSchema = z
       .min(1, "Campo obrigatório.")
       .email("E-mail inválido")
       .toLowerCase(),
-    password: z.string().min(6, "A senha deve ter no minímo 6 caracteres"),
-    confirm_password: z.string(),
+    password: z
+      .string()
+      .min(1, "Compo obrigatório.")
+      .min(6, "A senha deve ter no minímo 6 caracteres."),
+    confirm_password: z.string().min(1, "Campo obrigatório."),
   })
   .refine((data) => data.password === data.confirm_password, {
     message: "Senha incorreta",
